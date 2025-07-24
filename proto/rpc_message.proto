@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package rpc;
+
+// RPC请求消息
+message RpcRequest {
+    string service_name = 1;
+    string method_name = 2;
+    bytes request_data = 3;
+    string request_id = 4;
+}
+
+// RPC响应消息
+message RpcResponse {
+    string request_id = 1;
+    int32 error_code = 2;
+    string error_msg = 3;
+    bytes response_data = 4;
+}
+
+// 服务注册消息
+message ServiceRegisterRequest {
+    string service_name = 1;
+    string host = 2;
+    int32 port = 3;
+}
+
+message ServiceRegisterResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// 服务发现消息
+message ServiceDiscoveryRequest {
+    string service_name = 1;
+}
+
+message ServiceInfo {
+    string host = 1;
+    int32 port = 2;
+    int64 last_heartbeat = 3;
+}
+
+message ServiceDiscoveryResponse {
+    repeated ServiceInfo services = 1;
+}
+
+// 心跳消息
+message HeartbeatRequest {
+    string service_name = 1;
+    string host = 2;
+    int32 port = 3;
+}
+
+message HeartbeatResponse {
+    bool success = 1;
+    string message = 2;
+}

@@ -1,0 +1,19 @@
+{
+    "registry": {
+        "host": "127.0.0.1",
+        "port": 8080,
+        "heartbeat_interval": 15,
+        "service_timeout": 30
+    },
+    "server": {
+        "port": 8081,
+        "max_connections": 1000,
+        "thread_pool_size": 10
+    },
+    "client": {
+        "connection_timeout": 5000,
+        "request_timeout": 30000,
+        "retry_count": 3,
+        "load_balance_strategy": "round_robin"
+    }
+}
