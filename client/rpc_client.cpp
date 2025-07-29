@@ -288,7 +288,6 @@ std::string RpcClient::callEndpoint(const ServiceEndpoint& endpoint,
         
         // 归还连接
         connection_pool_->release(endpoint.host, endpoint.port, conn);
-        
         return response.response_data();
         
     } catch (...) {

@@ -360,7 +360,6 @@ void RpcServer::sendHeartbeatForService(const std::string& service_name) {
 
 std::string RpcServer::getLocalIP() {
     // 简化实现，返回localhost
-    // 在生产环境中，这里应该获取实际的本机IP地址
     return "127.0.0.1";
 }
 

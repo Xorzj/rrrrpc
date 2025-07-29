@@ -108,7 +108,7 @@ void RegistryServer::handleConnection(std::shared_ptr<TcpConnection> conn) {
         }
     }
     
-    // 3. 尝试解析为HeartbeatRequest - 这是心跳处理！
+    // 3. 尝试解析为HeartbeatRequest - 这是心跳处理
     if (!handled) {
         rpc::HeartbeatRequest request;
         if (Serializer::deserialize(data, &request)) {
