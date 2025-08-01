@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package rpc;
+
+// Raft相关消息
+message LogEntry {
+    int64 term = 1;
+    int64 index = 2;
+    string operation = 3;  // "register", "unregister", "heartbeat"
+    bytes data = 4;        // 序列化的操作数据
+}
+
+message RequestVoteRequest {
+    int64 term = 1;
+    string candidate_id = 2;
+    int64 last_log_index = 3;
+    int64 last_log_term = 4;
+}
+
+message RequestVoteResponse {
+    int64 term = 1;
+    bool vote_granted = 2;
+}
+
+message AppendEntriesRequest {
+    int64 term = 1;
+    string leader_id = 2;
+    int64 prev_log_index = 3;
+    int64 prev_log_term = 4;
+    repeated LogEntry entries = 5;
+    int64 leader_commit = 6;
+}
+
+message AppendEntriesResponse {
+    int64 term = 1;
+    bool success = 2;
+    int64 match_index = 3;
+}
+
+// 集群管理消息
+message ClusterNodeInfo {
+    string node_id = 1;
+    string host = 2;
+    int32 port = 3;
+    string role = 4;  // "leader", "follower", "candidate"
+    int64 term = 5;
+}
+
+message ClusterStatusRequest {
+}
+
+message ClusterStatusResponse {
+    repeated ClusterNodeInfo nodes = 1;
+    string leader_id = 2;
+}
+
+// 服务操作数据
+message ServiceOperation {
+    string operation_type = 1;  // "register", "unregister", "heartbeat"
+    string service_name = 2;
+    string host = 3;
+    int32 port = 4;
+    int64 timestamp = 5;
+}

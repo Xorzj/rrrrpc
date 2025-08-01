@@ -1,0 +1,35 @@
+{
+    "cluster": {
+        "nodes": [
+            {
+                "node_id": "registry-node-1",
+                "host": "127.0.0.1",
+                "client_port": 8080,
+                "raft_port": 9080
+            },
+            {
+                "node_id": "registry-node-2", 
+                "host": "127.0.0.1",
+                "client_port": 8081,
+                "raft_port": 9081
+            },
+            {
+                "node_id": "registry-node-3",
+                "host": "127.0.0.1", 
+                "client_port": 8082,
+                "raft_port": 9082
+            }
+        ]
+    },
+    "raft": {
+        "election_timeout_min": 150,
+        "election_timeout_max": 300,
+        "heartbeat_interval": 50,
+        "log_compaction_threshold": 1000
+    },
+    "registry": {
+        "service_timeout": 30,
+        "cleanup_interval": 30,
+        "max_services_per_name": 100
+    }
+}
